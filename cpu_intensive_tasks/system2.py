@@ -2,7 +2,7 @@ import json
 import time
 from concurrent.futures import ThreadPoolExecutor
 import ray
-from cpu_intensive_tasks.utils import get_pubsub, get_random_number
+from utils import get_pubsub, get_random_number
 
 class System2:
     def __init__(self):
@@ -11,6 +11,7 @@ class System2:
         self.executor = ThreadPoolExecutor(1)
         self.solution_ids = []
         self._continuous_loop_sleep_interval = 0.01
+        time.sleep(self._continuous_loop_sleep_interval)
         self.init()
         print("System 2 has started")
 
