@@ -1,5 +1,5 @@
 ## Problem statement
-![Alt text](cpu_intensive_tasks.png?raw=true "Title")
+![Alt text](diagrams/cpu_intensive_tasks.png?raw=true "Title")
 
 ## Setup and Execution
 - Create python environment and install libraries
@@ -10,7 +10,7 @@
 - Start system 1 --> ``bash start_system1.sh``
 
 ## Architecture
-![Alt text](architecture.png?raw=true "Title")
+![Alt text](diagrams/architecture.png?raw=true "Title")
 
 ## CPU utilization
-![Alt text](cpu_utilization.png?raw=true "Title")
+![Alt text](diagrams/cpu_utilization.png?raw=true "Title")
