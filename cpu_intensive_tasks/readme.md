@@ -7,7 +7,9 @@
 - Change system 1 and 2 configs in ``configs.json``
 - Start system 2 --> ``bash start_system2.sh``
   - wait for message system 2 has started
+  - system 2 would run indefinitely
 - Start system 1 --> ``bash start_system1.sh``
+  - prints score when all solutions are received and then exits  
 
 ## Architecture
 ![Alt text](diagrams/architecture.png?raw=true "Title")
