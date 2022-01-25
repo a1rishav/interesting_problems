@@ -33,7 +33,7 @@ class System2:
             except Exception as e:
                 print(e)
 
-    def solve(self):
+    def solve(self, random_min, random_max):
         subscriber = self.pubsub.pubsub()
         subscriber.subscribe(self._task_channel)
         task_counter = 0
@@ -47,7 +47,7 @@ class System2:
                 task = json.loads(message['data'])
                 task_id = task['id']
                 task_number = task['number']
-                self.solution_ids.append(solve_task.remote(task_id, task_number))
+                self.solution_ids.append(solve_task.remote(task_id, task_number, random_min, random_max))
             else:
                 time.sleep(self._continuous_loop_sleep_interval)
 
@@ -59,7 +59,7 @@ class System2:
 
 # def solve_task(self, task_id, random_no_count, random_min=1, random_max=1000_000_000):
 @ray.remote
-def solve_task(task_id, random_no_count, random_min=1, random_max=1000):
+def solve_task(task_id, random_no_count, random_min, random_max):
     print("Solving task : {}, random_no_count : {}".format(task_id, random_no_count))
     task_start_time = time.time()
     sum = 0
@@ -74,4 +74,12 @@ def solve_task(task_id, random_no_count, random_min=1, random_max=1000):
 
 
 if __name__ == '__main__':
-    System2().solve()
+    configs = None
+    with open('configs.json', 'r') as f:
+        data = json.load(f)
+    if not data:
+        raise Exception("Invalid configuration")
+
+    random_no_min = data["system_2"]["random_no_min"]
+    random_no_max = data["system_2"]["random_no_max"]
+    System2().solve(random_min=random_no_min, random_max=random_no_max)

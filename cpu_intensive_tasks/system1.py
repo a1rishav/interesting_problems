@@ -1,7 +1,7 @@
 import json
 import time
 import uuid
-from cpu_intensive_tasks.utils import get_random_number, get_pubsub
+from utils import get_random_number, get_pubsub
 from concurrent.futures import ThreadPoolExecutor
 
 
@@ -67,5 +67,15 @@ class System1:
 
 
 if __name__ == '__main__':
-    system1 = System1(no_of_tasks_to_produce=1000)
-    system1.generate_tasks()
+    configs = None
+    with open('configs.json', 'r') as f:
+        data = json.load(f)
+    if not data:
+        raise Exception("Invalid configuration")
+
+    no_of_tasks = data["system_1"]["task_count"]
+    random_no_min = data["system_1"]["random_no_min"]
+    random_no_max = data["system_1"]["random_no_max"]
+
+    system1 = System1(no_of_tasks_to_produce=no_of_tasks)
+    system1.generate_tasks(random_no_min=random_no_min, random_no_max=random_no_max)
