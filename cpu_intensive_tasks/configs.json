@@ -1,11 +1,11 @@
 {
   "system_1": {
     "task_count" : 100,
-    "random_no_min" : 10000,
-    "random_no_max" : 100000
+    "random_no_min" : 10000000,
+    "random_no_max" : 100000000
   },
   "system_2" : {
     "random_no_min" : 1,
-    "random_no_max" : 1000
+    "random_no_max" : 1000000000
   }
 }
